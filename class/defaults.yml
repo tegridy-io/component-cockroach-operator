@@ -1,0 +1,4 @@
+parameters:
+  cockroach_operator:
+    =_metadata: {}
+    namespace: syn-cockroach-operator

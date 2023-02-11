@@ -1,0 +1,25 @@
+{
+  "template": "https://github.com/projectsyn/commodore-component-template.git",
+  "commit": "73f964d1a9b834a772169d1ffe2b4406f90b2472",
+  "checkout": "main",
+  "context": {
+    "cookiecutter": {
+      "name": "CockroachDB Operator",
+      "slug": "cockroach-operator",
+      "parameter_key": "cockroach_operator",
+      "test_cases": "defaults",
+      "add_lib": "n",
+      "add_pp": "n",
+      "add_golden": "y",
+      "add_matrix": "y",
+      "add_go_unit": "n",
+      "copyright_holder": "VSHN AG <info@vshn.ch>",
+      "copyright_year": "2023",
+      "github_owner": "tegridy-io",
+      "github_name": "component-cockroach-operator",
+      "github_url": "https://github.com/tegridy-io/component-cockroach-operator",
+      "_template": "https://github.com/projectsyn/commodore-component-template.git"
+    }
+  },
+  "directory": null
+}

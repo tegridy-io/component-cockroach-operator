@@ -1,0 +1,5 @@
+= CockroachDB Operator
+
+cockroach-operator is a Commodore component to manage CockroachDB Operator.
+
+See the xref:references/parameters.adoc[parameters] reference for further details.
