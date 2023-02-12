@@ -2,3 +2,13 @@ parameters:
   cockroach_operator:
     =_metadata: {}
     namespace: syn-cockroach-operator
+
+    manifestVersion: v2.10.0
+    kustomizeInput:
+      namespace: ${cockroach_operator:namespace}
+
+    images:
+      operator:
+        registry: docker.io
+        repository: cockroachdb/cockroach-operator
+        tag: v2.10.0
