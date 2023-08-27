@@ -11,4 +11,10 @@ parameters:
       operator:
         registry: docker.io
         repository: cockroachdb/cockroach-operator
-        tag: v2.10.0
+        tag: v2.11.0
+      cockroach:
+        registry: docker.io
+        repository: cockroachdb/cockroach
+        tag: v23.1.8
+
+    databases: {}

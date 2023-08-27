@@ -1,0 +1,10 @@
+parameters:
+  cockroach_operator:
+    databases:
+      apps:
+        namespace: app-database
+        nodes: 3
+        storage:
+          accessMode: ReadWriteOnce
+          storageClass: ''
+          size: 5Gi
