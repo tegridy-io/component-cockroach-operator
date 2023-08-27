@@ -1,0 +1,123 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  annotations: {}
+  labels:
+    name: app-database
+  name: app-database
+---
+apiVersion: crdb.cockroachlabs.com/v1alpha1
+kind: CrdbCluster
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/component: database
+    app.kubernetes.io/managed-by: commodore
+    app.kubernetes.io/name: apps-database
+    name: apps-database
+  name: apps-database
+  namespace: app-database
+spec:
+  affinity:
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - apps-database
+          topologyKey: kubernetes.io/hostname
+  dataStore:
+    pvc:
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 5Gi
+        storageClassName: ''
+        volumeMode: Filesystem
+  image:
+    name: docker.io/cockroachdb/cockroach:v23.1.8
+    pullPolicy: IfNotPresent
+  nodes: 3
+  tlsEnabled: true
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations: {}
+  labels:
+    app.kubernetes.io/component: client
+    app.kubernetes.io/managed-by: commodore
+    app.kubernetes.io/name: apps-database-client
+    name: apps-database-client
+  name: apps-database-client
+  namespace: app-database
+spec:
+  minReadySeconds: 30
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: client
+      app.kubernetes.io/managed-by: commodore
+      app.kubernetes.io/name: apps-database-client
+      name: apps-database-client
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations: {}
+      labels:
+        app.kubernetes.io/component: client
+        app.kubernetes.io/managed-by: commodore
+        app.kubernetes.io/name: apps-database-client
+        name: apps-database-client
+    spec:
+      containers:
+        - args: []
+          command:
+            - sleep
+            - infinity
+          env:
+            - name: COCKROACH_CERTS_DIR
+              value: /cockroach/certs-dir
+            - name: COCKROACH_HOST
+              value: apps-database-public
+          image: docker.io/cockroachdb/cockroach:v23.1.8
+          imagePullPolicy: IfNotPresent
+          name: client
+          ports: []
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - ALL
+          stdin: false
+          tty: false
+          volumeMounts:
+            - mountPath: /cockroach/certs-dir
+              name: certs
+      imagePullSecrets: []
+      initContainers: []
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      serviceAccountName: default
+      terminationGracePeriodSeconds: 30
+      volumes:
+        - name: certs
+          secret:
+            items:
+              - key: ca.crt
+                path: ca.crt
+              - key: tls.crt
+                path: client.root.crt
+              - key: tls.key
+                path: client.root.key
+            secretName: apps-database-root

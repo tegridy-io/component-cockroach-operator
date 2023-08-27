@@ -1,13 +1,13 @@
 {
   "template": "https://github.com/projectsyn/commodore-component-template.git",
-  "commit": "73f964d1a9b834a772169d1ffe2b4406f90b2472",
+  "commit": "dcae06138d227340acb8056d0d031f32d75c09b5",
   "checkout": "main",
   "context": {
     "cookiecutter": {
       "name": "CockroachDB Operator",
       "slug": "cockroach-operator",
       "parameter_key": "cockroach_operator",
-      "test_cases": "defaults",
+      "test_cases": "defaults create-db",
       "add_lib": "n",
       "add_pp": "n",
       "add_golden": "y",
