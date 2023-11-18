@@ -49,7 +49,7 @@ kind: Deployment
 metadata:
   annotations: {}
   labels:
-    app.kubernetes.io/component: client
+    app.kubernetes.io/component: database-client
     app.kubernetes.io/managed-by: commodore
     app.kubernetes.io/name: apps-database-client
     name: apps-database-client
@@ -61,7 +61,7 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app.kubernetes.io/component: client
+      app.kubernetes.io/component: database-client
       app.kubernetes.io/managed-by: commodore
       app.kubernetes.io/name: apps-database-client
       name: apps-database-client
@@ -74,7 +74,7 @@ spec:
     metadata:
       annotations: {}
       labels:
-        app.kubernetes.io/component: client
+        app.kubernetes.io/component: database-client
         app.kubernetes.io/managed-by: commodore
         app.kubernetes.io/name: apps-database-client
         name: apps-database-client
