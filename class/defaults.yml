@@ -1,6 +1,7 @@
 parameters:
   cockroach_operator:
-    =_metadata: {}
+    =_metadata:
+      multi_tenant: true
     namespace: syn-cockroach-operator
 
     manifestVersion: v2.10.0
