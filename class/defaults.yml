@@ -12,7 +12,7 @@ parameters:
       operator:
         registry: docker.io
         repository: cockroachdb/cockroach-operator
-        tag: v2.14.0
+        tag: v2.17.0
       cockroach:
         registry: docker.io
         repository: cockroachdb/cockroach
