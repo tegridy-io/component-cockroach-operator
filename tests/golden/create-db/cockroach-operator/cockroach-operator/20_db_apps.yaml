@@ -39,7 +39,7 @@ spec:
         storageClassName: ''
         volumeMode: Filesystem
   image:
-    name: docker.io/cockroachdb/cockroach:v24.1.2
+    name: docker.io/cockroachdb/cockroach:v24.1.12
     pullPolicy: IfNotPresent
   nodes: 3
   tlsEnabled: true
@@ -89,7 +89,7 @@ spec:
               value: /cockroach/certs-dir
             - name: COCKROACH_HOST
               value: apps-database-public
-          image: docker.io/cockroachdb/cockroach:v24.1.2
+          image: docker.io/cockroachdb/cockroach:v24.1.12
           imagePullPolicy: IfNotPresent
           name: client
           ports: []
