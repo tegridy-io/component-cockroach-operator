@@ -16,6 +16,6 @@ parameters:
       cockroach:
         registry: docker.io
         repository: cockroachdb/cockroach
-        tag: v24.1.2
+        tag: v24.3.5
 
     databases: {}
